@@ -44,7 +44,7 @@ shinyUI(fluidPage(
         br(),
         hr(),
         
-        downloadButton("btn_download", "Save cluster data", class = "button"),
+        downloadButton("downloadData", "Save cluster data"),
         br(),
         br()
         

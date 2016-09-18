@@ -27,7 +27,7 @@ shinyServer(function (input, output) {
             dataTableOutput("expr_data_table")
         })
         output$expr_data_table <- renderDataTable(expr_data,
-                                                  options = list(pageLength = 10))
+                                                  options = list(pageLength = 6))
         output$ui_info <- renderUI({
             tags$div(
                 p("Expression data successfully read in.", class = "standardtext"),
@@ -56,7 +56,8 @@ shinyServer(function (input, output) {
             tmp[, Gene := genes]
             
             tmp
-        })
+        },
+        options = list(pageLength = 6))
     })
     
     observeEvent(input$btn_cluster, {
@@ -66,16 +67,14 @@ shinyServer(function (input, output) {
 
         output$expr_data_table <- renderDataTable(
             cluster_data,
-            options = list(pageLength = 10)
+            options = list(pageLength = 6)
         )
     })
     
-    output$btn_download <- downloadHandler(
-        filename = function () {
-            paste("Data-", Sys.Date(), ".csv", sep = "")
-        },
-        content = function(con) {
-            write.csv(cluster_data, con)
+    output$downloadData <- downloadHandler(
+        filename = function () { paste("ClusterData_", Sys.Date(), ".csv", sep = "") },
+        content = function(file) {
+            write.csv(cluster_data, file, row.names = FALSE, quote = FALSE)
         }
     )
     
