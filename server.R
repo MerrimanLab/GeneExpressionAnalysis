@@ -40,7 +40,7 @@ shinyServer(function (input, output) {
     
     observeEvent(input$btn_heatmap, {
         
-        hmcol = colorRampPalette(brewer.pal(9, "GnBu"))(16)
+        hmcol = colorRampPalette(brewer.pal(9, "GnBu"))(16) # (dark = more expression, light = less expression)
         data_by_gene <<- by_gene(expr_data, eps = input$sld_eps)
 
         output$ui_display <- renderUI({
@@ -48,7 +48,7 @@ shinyServer(function (input, output) {
         })
         output$plt_heatmap <- renderPlot({
             validate(need(expr_data, "no expression data loaded..."))
-            display_heatmap(data_by_gene, colours = rev(hmcol))
+            display_heatmap(data_by_gene, colours = hmcol)
         })
         output$expr_data_table <- renderDataTable({
             genes <- rownames(data_by_gene)

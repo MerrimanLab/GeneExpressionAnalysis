@@ -30,7 +30,7 @@ shinyUI(fluidPage(
         br(),
         p("Adjust the slider below to filter out genes.", class = "standardtext"),
         sliderInput("sld_eps", p("Fold change threshold:", class = "standardtext"),
-                    min = 1, max = 5, step = 0.5, value = 2),
+                    min = 1, max = 10, step = 0.5, value = 4),
         br(),
         actionButton("btn_heatmap", "Display heatmap", class = "button"),
         br(),

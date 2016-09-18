@@ -44,7 +44,7 @@ by_gene <- function (x, eps = 3) {
 }
 display_heatmap <- function (x, colours = NULL) {
 
-    heatmap(x, col = colours)
+    heatmap(x, col = colours, Colv = NA)
     
 }
 
