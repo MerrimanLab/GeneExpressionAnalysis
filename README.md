@@ -18,5 +18,5 @@ There is an example dataset included in this repo. See GeneExpressionAnalysis/da
 
 ## Wishlist  
 
-  - Change the threshold widget label from "log fold change" to "variablility' or something similar.  
-  - include some validation on the number of genes clustered. Limit this to < 5000 genes.  
+  - Change the threshold widget label from "log fold change" to "variablility' or something similar. COMPLETE.  
+  - include some validation on the number of genes clustered. Limit this to < 5000 genes. COMPLETE.  
