@@ -4,6 +4,7 @@
 # Nick Burns
 # Sept, 2016
 
+.libPaths('/srv/shiny-server/mik-apps/Rlibs/')
 library(shiny)
 library(DESeq2)
 library(RColorBrewer)
@@ -14,7 +15,7 @@ shinyUI(fluidPage(
     theme = "interface_styles.css",
     headerPanel(""),
     sidebarPanel(
-        h2("Gene Expression Clustering"),
+        h2("Gene Expression Clustering", class = "heading"),
         br(),
         hr(),
         br(),
@@ -28,8 +29,8 @@ shinyUI(fluidPage(
         
         p("Clustering options", class = "boldtext"),
         br(),
-        p("Adjust the slider below to filter out genes.", class = "standardtext"),
-        sliderInput("sld_eps", p("Fold change threshold:", class = "standardtext"),
+        p("Adjust the slider below to filter out genes with little variance across samples.", class = "standardtext"),
+        sliderInput("sld_eps", p("Variance threshold:", class = "standardtext"),
                     min = 1, max = 10, step = 0.5, value = 4),
         br(),
         actionButton("btn_heatmap", "Display heatmap", class = "button"),

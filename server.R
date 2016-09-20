@@ -4,6 +4,7 @@
 # Nick Burns
 # Sept, 2016
 
+.libPaths('/srv/shiny-server/mik-apps/Rlibs/')
 library(shiny)
 library(DESeq2)
 library(RColorBrewer)
@@ -43,11 +44,15 @@ shinyServer(function (input, output) {
         hmcol = colorRampPalette(brewer.pal(9, "GnBu"))(16) # (dark = more expression, light = less expression)
         data_by_gene <<- by_gene(expr_data, eps = input$sld_eps)
 
+
         output$ui_display <- renderUI({
             plotOutput("plt_heatmap")
         })
         output$plt_heatmap <- renderPlot({
             validate(need(expr_data, "no expression data loaded..."))
+            validate(need(nrow(data_by_gene) < 3000,
+                          "Too many genes to cluster. Try increasing the variance threshold"))
+
             display_heatmap(data_by_gene, colours = hmcol)
         })
         output$expr_data_table <- renderDataTable({
